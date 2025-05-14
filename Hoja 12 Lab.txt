@@ -1,0 +1,40 @@
+dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+print("Ingrese presión arterial (separados por espacios):")
+presion = [int(x) for x in input().split()]
+print("Ingrese niveles de azucar en sangr: (separados por espacios):")
+azucar = [int(x) for x in input().split()]
+print("Ingrese consumo de sal  (separados por espacios):")
+sal = [int(x) for x in input().split()]
+
+for i in range(7):
+    print(f"\n{dias[i]}:")
+    if presion[i] < 120:
+        print(f"Presión: {presion[i]} mmHg (Normal)")
+    elif 120 <= presion[i] <= 129:
+        print(f"Presión: {presion[i]} mmHg (Elevada)")
+    elif 130 <= presion[i] <= 139:
+        print(f"Presión: {presion[i]} mmHg (Hipertensión Etapa 1)")
+    else:
+        print(f"Presión: {presion[i]} mmHg (Hipertensión Etapa 2) - ¡ALERTA!")
+
+    if 70 <= azucar[i] <= 140:
+        print(f"Azúcar: {azucar[i]} mg/dL (Normal)")
+    else:
+        print(f"Azúcar: {azucar[i]} mg/dL (¡ALERTA! Fuera de rango)")
+    
+    if sal[i] <= 2300:
+        print(f"Sal: {sal[i]} mg (Normal)")
+    else:
+        print(f"Sal: {sal[i]} mg (¡ALERTA! Consumo excesivo)")
+print("")
+print("RESUMEN SEMANAL:")
+print(f"Presión promedio: {sum(presion)/7} mmHg")
+print(f"Azúcar promedio: {sum(azucar)/7} mg/dL")
+print(f"Sal promedio: {sum(sal)/7} mg")
+
+if any(p >= 140 for p in presion):
+    print("Hay Días con Hipertensión Etapa 2")
+if any(a < 70 or a > 140 for a in azucar):
+    print("Hay Días con niveles de azúcar peligrosos")
+if any(s > 2300 for s in sal):
+    print("Hay Días con consumo excesivo de sal")
